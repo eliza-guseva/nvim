@@ -32,3 +32,10 @@ opt.wrap = true -- line wrapping
 -- clipboard
 opt.clipboard = "unnamedplus" -- use system clipboard
 
+-- diagnostics - simple config like old _init.lua
+vim.diagnostic.config({
+  virtual_text = false, -- disable red underlines
+  signs = true, -- keep E, W, I, H signs in gutter
+  underline = false, -- disable underlines
+})
+
