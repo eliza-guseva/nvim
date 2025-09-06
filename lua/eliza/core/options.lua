@@ -28,3 +28,7 @@ opt.signcolumn = "yes"
 
 -- line wrapping
 opt.wrap = true -- line wrapping
+
+-- clipboard
+opt.clipboard = "unnamedplus" -- use system clipboard
+
