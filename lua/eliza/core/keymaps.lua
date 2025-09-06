@@ -66,3 +66,6 @@ end, { desc = "Toggle Supermaven" })
 
 -- Supermaven command abbreviation
 vim.cmd('cnoreabbrev St SupermavenToggle')
+
+-- Disable F1 help key
+keymap.set({"n", "i", "v"}, "<F1>", "<nop>", { desc = "Disabled F1 help" })
