@@ -15,7 +15,7 @@ opt.foldmethod = 'indent'
 vim.api.nvim_create_autocmd("FocusLost", {
   command = "silent! wa"  -- Save all files when you switch away from Neovim
 })
-
+opt.guifont = "menlo:h13"
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
@@ -37,5 +37,12 @@ vim.diagnostic.config({
   virtual_text = false, -- disable red underlines
   signs = true, -- keep E, W, I, H signs in gutter
   underline = true, -- disable underlines
+})
+
+-- Templ file association
+vim.filetype.add({
+  extension = {
+    templ = "templ",
+  },
 })
 

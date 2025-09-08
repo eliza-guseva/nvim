@@ -7,6 +7,9 @@ require("eliza.plugins")
 
 vim.cmd('colorscheme unokai')
 
+-- install catpuccin/nvim color scheme
+
+
 -- Fix cursor color for morning colorscheme
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "morning",

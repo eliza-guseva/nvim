@@ -50,7 +50,8 @@ return {
                 "lua_ls",
                 "pyright",
                 "eslint",
-                "gopls"
+                "gopls",
+                "templ"
             },
             handlers = {
                 -- default handler for installed servers
@@ -61,15 +62,39 @@ return {
                 end,
                 ["gopls"] = function()
                     lspconfig["gopls"].setup({
+                        capabilities = capabilities,
                         settings = {
                           gopls = {
                             analyses = {
                               unusedparams = true,
+                              unusedwrite = true,
+                              useany = true,
+                              nilness = true,
+                              fieldalignment = true,
                             },
                             staticcheck = true,
                             gofumpt = true,
+                            completeUnimported = true,
+                            usePlaceholders = true,
+                            matcher = "Fuzzy",
+                            experimentalWorkspaceModule = true,
+                            buildFlags = {"-tags=integration,unit,e2e"},
+                            env = {
+                              GOFLAGS = "-tags=integration,unit,e2e",
+                            },
+                            directoryFilters = {
+                              "-**/node_modules",
+                              "-**/.git",
+                              "-**/vendor",
+                            },
                           },
                         },
+                        on_attach = function(client, bufnr)
+                          -- Enable inlay hints if available
+                          if client.server_capabilities.inlayHintProvider then
+                            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                          end
+                        end,
                     })
                 end,
                 ["lua_ls"] = function()
