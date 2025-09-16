@@ -5,10 +5,7 @@ require("eliza.core.keymaps")
 require("eliza.lazy")
 require("eliza.plugins")
 
-vim.cmd('colorscheme unokai')
-
--- install catpuccin/nvim color scheme
-
+vim.cmd('colorscheme fairyfloss')
 
 -- Fix cursor color for morning colorscheme
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -19,3 +16,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "catppuccin-latte",
+  callback = function()
+    vim.cmd("highlight Cursor guibg=#000000 guifg=#ffffff")
+    vim.cmd("highlight CursorLine guibg=#dddddd")
+    vim.cmd("highlight CursorLineNr guibg=#dddddd")
+  end,
+})
