@@ -57,7 +57,6 @@ keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- o
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- Supermaven keymaps
 keymap.set({'n', 'i'}, '<C-s>', function()
@@ -66,6 +65,31 @@ end, { desc = "Toggle Supermaven" })
 
 -- Supermaven command abbreviation
 vim.cmd('cnoreabbrev St SupermavenToggle')
+
+-- Buffer management
+keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
+keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+keymap.set("n", "<leader>ba", "<cmd>%bdelete<CR>", { desc = "Delete all buffers" })
+keymap.set("n", "<leader>bo", "<cmd>%bdelete|edit#|normal `\"<CR>", { desc = "Delete all other buffers" })
+
+-- LSP additional commands
+keymap.set("n", "<leader>bf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format buffer" })
+keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
+keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
+
+-- Copy operations
+keymap.set("n", "<leader>cf", function()
+  local filepath = vim.fn.expand("%")
+  vim.fn.setreg("+", filepath)
+  print("Copied file path: " .. filepath)
+end, { desc = "Copy current file path" })
+
+keymap.set("n", "<leader>cw", function()
+  local word = vim.fn.expand("<cword>")
+  vim.fn.setreg("+", word)
+  print("Copied word: " .. word)
+end, { desc = "Copy word under cursor" })
 
 -- Disable F1 help key
 keymap.set({"n", "i", "v"}, "<F1>", "<nop>", { desc = "Disabled F1 help" })
