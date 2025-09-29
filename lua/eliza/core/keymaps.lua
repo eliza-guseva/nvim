@@ -90,6 +90,3 @@ keymap.set("n", "<leader>cw", function()
   vim.fn.setreg("+", word)
   print("Copied word: " .. word)
 end, { desc = "Copy word under cursor" })
-
--- Disable F1 help key
-keymap.set({"n", "i", "v"}, "<F1>", "<nop>", { desc = "Disabled F1 help" })
