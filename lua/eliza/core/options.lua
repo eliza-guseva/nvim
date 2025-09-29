@@ -11,6 +11,7 @@ opt.expandtab = true -- Convert tabs to spaces
 opt.softtabstop = 4  -- How many spaces when you press Tab
 vim.cmd('syntax on')
 opt.foldmethod = 'indent'
+opt.foldenable = false -- disable folding by default
 -- autosave
 vim.api.nvim_create_autocmd("FocusLost", {
   command = "silent! wa"  -- Save all files when you switch away from Neovim
