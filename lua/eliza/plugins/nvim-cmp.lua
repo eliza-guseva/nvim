@@ -59,5 +59,10 @@ return {
         }),
       },
     })
+
+    -- Disable completion in markdown files
+    cmp.setup.filetype("markdown", {
+      enabled = false,
+    })
   end,
 }
